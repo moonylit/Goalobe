@@ -30,7 +30,9 @@ fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadi
       lat: stadium.geometry.coordinates[1],
       lng: stadium.geometry.coordinates[0],
       name: stadium.properties.name,
-      capacity: stadium.properties.capacity
+      capacity: stadium.properties.capacity,
+      team: stadium.properties.tenant,
+      image: stadium.properties.image
     }));
 
     myGlobe
