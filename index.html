@@ -1,58 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Goalobe 🌍⚽</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background-color: #000;
-    }
-    #globeViz {
-      width: 100vw;
-      height: 100vh;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goalobe 🌍⚽</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="globeViz"></div>
+    <h1>Goalobe 🌍⚽</h1>
 
-  <script src="//unpkg.com/globe.gl"></script>
+    <div id="globe-container"></div>
 
-  <script>
-    // Initialize the globe
-    const world = Globe()
-      (document.getElementById('globeViz'))
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-      .backgroundColor('#000')
-      .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 0)
-      .showAtmosphere(true)
-      .atmosphereColor('lightskyblue')
-      .atmosphereAltitude(0.2);
-
-    // Your stadium data
-    const data = [
-      { lat: 51.5, lng: -0.12, name: "Wembley (London)" },
-      { lat: 40.8, lng: -73.9, name: "NY Red Bulls Stadium" },
-      { lat: 48.86, lng: 2.35, name: "Parc des Princes (Paris)" },
-      { lat: 34.05, lng: -118.24, name: "LA Galaxy" }
-    ];
-
-    // Add the stadium points to the globe
-    world
-      .pointsData(data)
-      .pointLat(d => d.lat)
-      .pointLng(d => d.lng)
-      .pointAltitude(0.05)
-      .pointColor(() => 'orange')
-      .pointLabel(d => d.name);
-
-    // Auto-rotate the globe by updating its point of view
-    world.controls().autoRotate = true;
-    world.controls().autoRotateSpeed = 0.4;
-    
-  </script>
+    <script src="//unpkg.com/globe.gl"></script>
+    <script src="script.js"></script>
 </body>
 </html>
