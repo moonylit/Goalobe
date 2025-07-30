@@ -69,8 +69,8 @@ fetch('https://raw.githubusercontent.com/d-morris/world-stadiums/main/stadiums.j
         return group;
       })
       .onPointClick(point => {
-        cardStadiumName.textContent = point.name; 
-        cardStadiumCapacity.textContent = `Capacity: ${point.capacity.toLocaleString()}`; 
+        cardStadiumName.textContent = point.name || 'Unknown Stadium';
+        cardStadiumCapacity.textContent = `Capacity: ${point.capacity || 0).toLocaleString()}`; 
         cardTeamName.textContent = point.team || 'N/A';
         cardStadiumImg.src = point.image || 'https://i.imgur.com/K4gQ8rL.jpeg';
         cardFixtureInfo.innerHTML = '<i>Live fixtures coming soon...</i>'; 
