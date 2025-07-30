@@ -10,7 +10,7 @@ const myGlobe = Globe()
 myGlobe.controls().autoRotate = true;
 myGlobe.controls().autoRotateSpeed = 0.3;
 
-fetch('https://raw.githubusercontent.com/d-morris/world-stadiums/main/stadiums.json') 
+fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadiums.json')
   .then(res => res.json())
   .then(stadiums => {
     const infoCard = document.getElementById('info-card'); 
