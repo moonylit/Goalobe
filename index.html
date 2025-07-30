@@ -2,16 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Footy from Space 🌍⚽</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Goalobe 🌍⚽</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+    }
+    #globeViz {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-  <h1>🌍 Footy from Space</h1>
-  <div id="globe-container"></div>
+  <div id="globeViz"></div>
 
-  <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
-  <script src="https://unpkg.com/three-globe@2.26.1"></script>
-  <script src="script.js"></script>
+  <!-- Add Globe.gl and Three.js scripts -->
+  <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/globe.gl"></script>
+
+  <script>
+    const world = Globe()
+      (document.getElementById('globeViz'))
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .backgroundColor('#000')
+      .pointOfView({ lat: 20, lng: 0, altitude: 2 });
+
+    // Example stadiums or countries with dummy data
+    const data = [
+      { lat: 51.5, lng: -0.12, name: "Wembley (London)" },
+      { lat: 40.8, lng: -73.9, name: "NY Red Bulls Stadium" },
+      { lat: 48.86, lng: 2.35, name: "Parc des Princes (Paris)" },
+      { lat: 34.05, lng: -118.24, name: "LA Galaxy" }
+    ];
+
+    world
+      .pointsData(data)
+      .pointLat(d => d.lat)
+      .pointLng(d => d.lng)
+      .pointAltitude(0.05)
+      .pointColor(() => 'orange')
+      .pointLabel(d => d.name);
+  </script>
 </body>
 </html>
