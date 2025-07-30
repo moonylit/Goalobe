@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goalobe</title>
@@ -9,27 +9,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=1.2">
-</head>
-<body>
-    <h1>
-        <span>G</span>
-        <img class="jumping-ball" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" alt="O">
-        <span>AL</span>
-        <img class="rotating-globe" src="https://www.pngall.com/wp-content/uploads/2016/06/Globe-PNG-File.png" alt="O">
-        <span>BE</span>
-    </h1>
+    <link rel="stylesheet" href="style.css?v=1.4">
+  </head>
+  <body>
+    <a href="https://moonylit.github.io/Goalobe/" class="title-link">
+      <h1>
+          <span class="title-char">G</span>
+          <img class="title-char jumping-ball" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" alt="O">
+          <span class="title-char">A</span>
+          <span class="title-char">L</span>
+          <img class="title-char rotating-globe" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Globe_icon_-_Figma.png/512px-Globe_icon_-_Figma.png" alt="O">
+          <span class="title-char">B</span>
+          <span class="title-char">E</span>
+      </h1>
+    </a>
 
-        <div id="info-card" class="card-hidden">
+    <div id="info-card" class="card-hidden">
         <button id="card-close-btn">×</button>
         <img id="card-stadium-img" src="" alt="Stadium Image">
         <h2 id="card-stadium-name"></h2>
         <p id="card-team-name"></p>
         <p id="card-stadium-capacity"></p>
         <div id="card-fixture-info"></div>
-</div>
-<div id="globe-container"></div>
+    </div>
+    
+    <div id="globe-container"></div>
 
-<script src="//unpkg.com/globe.gl/dist/globe.gl.min.js"></script> <script src="script.js"></script>
-</body>
+    <script src="//unpkg.com/three.js"></script>
+    <script src="//unpkg.com/globe.gl"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
