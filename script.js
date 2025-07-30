@@ -1,5 +1,12 @@
 const Globe = window.Globe;
-const infoBox = document.getElementById('info-box');
+const infoCard = document.getElementById('info-card'); 
+const cardCloseBtn = document.getElementById('card-close-btn');
+const cardStadiumImg = document.getElementById('card-stadium-img');
+const cardStadiumName = document.getElementById('card-stadium-name');
+const cardTeamName = document.getElementById('card-team-name'); 
+const cardStadiumCapacity = document.getElementById('card-stadium-capacity'); 
+const cardFixtureInfo = document.getElementById('card-fixture-info'); 
+
 
 const myGlobe = Globe()
   (document.getElementById('globe-container'))
@@ -57,16 +64,24 @@ fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadi
         return group;
       })
       .onPointClick(point => {
-        infoBox.style.opacity = 1;
-        infoBox.innerHTML = `<b>${point.name}</b><br>Capacity: ${point.capacity.toLocaleString()}`;
+        cardStadiumName.textContent = point.name; 
+        cardStadiumCapacity.textContent = `Capacity: ${point.capacity.toLocaleString()}`; 
+        cardTeamName.textContent = point.team || 'N/A';
+        cardStadiumImg.src = point.image || 'https://i.imgur.com/K4gQ8rL.jpeg';
+        cardFixtureInfo.innerHTML = '<i>Live fixtures coming soon...</i>'; 
+        infoCard.classList.remove('card-hidden');
         
-        myGlobe.pointOfView({ lat: point.lat, lng: point.lng, altitude: 0.5 }, 1500);
+        myGlobe.pointOfView({ lat: point.lat, lng: point.lng, altitude: 0.5 }, 1500); 
       });
+Change 3: Update How to Hide the Car
   })
   .catch(err => console.error('Error loading stadium data:', err));
 
-myGlobe.onGlobeClick(() => {
-    infoBox.style.opacity = 0;
+const hideCard = () =
+    infoCard.classList.add('card-hidden'); 
+}; 
+myGlobe.onGlobeClick(hideCard); 
+cardCloseBtn.addEventListener('click', hideCard); 
 });
 window.addEventListener('resize' , () => {
   const container = document.getElementbyId('globe-container');
