@@ -17,8 +17,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Add perspective for 3D animations */
-  perspective: 400px;
 }
 
 .jumping-ball, .rotating-globe {
@@ -31,9 +29,8 @@ h1 {
 }
 
 .rotating-globe {
-    /* Apply the new 3D spin animation */
-    animation: spin-3d 4s linear infinite;
-    transform-style: preserve-3d;
+    /* Use the new, simpler 2D spin animation */
+    animation: spin-2d 4s linear infinite;
 }
 
 @keyframes jump {
@@ -45,13 +42,13 @@ h1 {
   }
 }
 
-/* This is the new 3D rotation keyframe */
-@keyframes spin-3d {
+/* This is the simple 2D rotation keyframe */
+@keyframes spin-2d {
   from {
-    transform: rotateY(0deg);
+    transform: rotate(0deg);
   }
   to {
-    transform: rotateY(360deg);
+    transform: rotate(360deg);
   }
 }
 
