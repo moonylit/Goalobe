@@ -8,10 +8,69 @@ body {
 
 h1 {
   margin-top: 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+  font-family: 'Bungee', cursive;
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jumping-ball, .rotating-globe {
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.jumping-ball {
+    animation: jump 1.5s ease-in-out infinite;
+}
+
+.rotating-globe {
+    animation: spin 5s linear infinite;
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #globe-container {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#info-box {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+  z-index: 2;
+  font-size: 1.2em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
