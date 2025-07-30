@@ -17,6 +17,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 400px; 
 }
 
 .jumping-ball, .rotating-globe {
@@ -29,7 +30,8 @@ h1 {
 }
 
 .rotating-globe {
-    animation: spin-2d 4s linear infinite;
+    animation: spin-3d 4s linear infinite;
+    transform-style: preserve-3d;
 }
 
 @keyframes jump {
@@ -42,12 +44,12 @@ h1 {
 }
 
 /* This keyframe now rotates clockwise */
-@keyframes spin-2d {
+@keyframes spin-3d {
   from {
-    transform: rotate(0deg);
+    transform: rotateY(0deg);
   }
   to {
-    transform: rotate(-360deg);
+    transform: rotateY(360deg);
   }
 }
 
