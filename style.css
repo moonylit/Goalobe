@@ -29,7 +29,6 @@ h1 {
 }
 
 .rotating-globe {
-    /* Use the new, simpler 2D spin animation */
     animation: spin-2d 4s linear infinite;
 }
 
@@ -42,13 +41,13 @@ h1 {
   }
 }
 
-/* This is the simple 2D rotation keyframe */
+/* This keyframe now rotates clockwise */
 @keyframes spin-2d {
   from {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 
