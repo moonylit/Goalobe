@@ -1,13 +1,3 @@
-const Globe = window.Globe;
-const infoCard = document.getElementById('info-card'); 
-const cardCloseBtn = document.getElementById('card-close-btn');
-const cardStadiumImg = document.getElementById('card-stadium-img');
-const cardStadiumName = document.getElementById('card-stadium-name');
-const cardTeamName = document.getElementById('card-team-name'); 
-const cardStadiumCapacity = document.getElementById('card-stadium-capacity'); 
-const cardFixtureInfo = document.getElementById('card-fixture-info'); 
-
-
 const myGlobe = Globe()
   (document.getElementById('globe-container'))
   .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
@@ -23,6 +13,19 @@ myGlobe.controls().autoRotateSpeed = 0.3;
 fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadiums.json')
   .then(res => res.json())
   .then(stadiums => {
+    const infoCard = document.getElementById('info-card'); 
+    const cardCloseBtn = document.getElementById('card-close-btn'); 
+    const cardStadiumImg = document.getElementById('card-stadium-img');
+    const cardStadiumName = document.getElementById('card-stadium-name'); 
+    const cardTeamName = document.getElementById('card-team-name'); 
+    const cardStadiumCapacity = document.getElementById('card-stadium-capacity'); 
+    const cardFixtureInfo = document.getElementById('card-fixture-info'); 
+    const hideCard = () => { 
+        infoCard.classList.add('card-hidden'); 
+    }; 
+    myGlobe.onGlobeClick(hideCard); 
+    cardCloseBtn.addEventListener('click', hideCard); 
+    
     const points = stadiums.features.map(stadium => ({
       lat: stadium.geometry.coordinates[1],
       lng: stadium.geometry.coordinates[0],
@@ -73,18 +76,10 @@ fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadi
         
         myGlobe.pointOfView({ lat: point.lat, lng: point.lng, altitude: 0.5 }, 1500); 
       });
-Change 3: Update How to Hide the Car
   })
   .catch(err => console.error('Error loading stadium data:', err));
-
-const hideCard = () =
-    infoCard.classList.add('card-hidden'); 
-}; 
-myGlobe.onGlobeClick(hideCard); 
-cardCloseBtn.addEventListener('click', hideCard); 
-});
 window.addEventListener('resize' , () => {
-  const container = document.getElementbyId('globe-container');
+  const container = document.getElementById('globe-container');
   myGlobe.width(container.offsetWidth);
   myGlobe.height(container.offsetHeight);
 });
