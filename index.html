@@ -23,28 +23,36 @@
   <script src="https://unpkg.com/three"></script>
   <script src="https://unpkg.com/globe.gl"></script>
 
-  <script>
-    const world = Globe()
-      (document.getElementById('globeViz'))
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-      .backgroundColor('#000')
-      .pointOfView({ lat: 20, lng: 0, altitude: 2 });
+<script>
+  const world = Globe()
+    (document.getElementById('globeViz'))
+    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+    .backgroundColor('#000')
+    .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 0)
+    .showAtmosphere(true)
+    .atmosphereColor('lightskyblue')
+    .atmosphereAltitude(0.2);
 
-    // Example stadiums or countries with dummy data
-    const data = [
-      { lat: 51.5, lng: -0.12, name: "Wembley (London)" },
-      { lat: 40.8, lng: -73.9, name: "NY Red Bulls Stadium" },
-      { lat: 48.86, lng: 2.35, name: "Parc des Princes (Paris)" },
-      { lat: 34.05, lng: -118.24, name: "LA Galaxy" }
-    ];
+  const data = [
+    { lat: 51.5, lng: -0.12, name: "Wembley (London)" },
+    { lat: 40.8, lng: -73.9, name: "NY Red Bulls Stadium" },
+    { lat: 48.86, lng: 2.35, name: "Parc des Princes (Paris)" },
+    { lat: 34.05, lng: -118.24, name: "LA Galaxy" }
+  ];
 
-    world
-      .pointsData(data)
-      .pointLat(d => d.lat)
-      .pointLng(d => d.lng)
-      .pointAltitude(0.05)
-      .pointColor(() => 'orange')
-      .pointLabel(d => d.name);
-  </script>
+  world
+    .pointsData(data)
+    .pointLat(d => d.lat)
+    .pointLng(d => d.lng)
+    .pointAltitude(0.05)
+    .pointColor(() => 'orange')
+    .pointLabel(d => d.name);
+
+  // Auto-rotate the globe
+  setInterval(() => {
+    const currPOV = world.pointOfView();
+    world.pointOfView({ ...currPOV, lng: currPOV.lng + 0.2 }, 300);
+  }, 100);
+</script>
 </body>
 </html>
