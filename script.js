@@ -55,3 +55,8 @@ fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadi
 myGlobe.onGlobeClick(() => {
     infoBox.style.opacity = 0;
 });
+window.addEventListener('resize' , () => {
+  const container = document.getElementbyId('globe-container');
+  myGlobe.width(container.offsetWidth);
+  myGlobe.height(container.offsetHeight);
+});
