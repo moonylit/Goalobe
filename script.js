@@ -29,18 +29,31 @@ fetch('https://raw.githubusercontent.com/mapsam/world-stadiums/master/data/stadi
       .pointLng(d => d.lng)
       .pointAltitude(0)
       .pointThreeObject(d => {
+        const pinHeight = 3.5;
+        const headRadius = 0.7;
+
         const group = new THREE.Group();
-        const headMaterial = new THREE.MeshStandardMaterial({ color: '#ff0000', metalness: 0.3, roughness: 0.4 });
-        const headGeometry = new THREE.SphereGeometry(0.7, 32, 32);
+
+        const headMaterial = new THREE.MeshStandardMaterial({
+          color: '#ff0000' ,
+          metalness: 0.3,
+          roughness: 0.4
+        });
+        const headGeometry = new THREE.SphereGeometry(headRadius, 16, 16);
         const head = new THREE.Mesh(headGeometry, headMaterial);
+        head.position.y = pinHeight;
         group.add(head);
-        const needleMaterial = new THREE.MeshStandardMaterial({ color: 'silver', metalness: 0.8, roughness: 0.3 });
-        const needleGeometry = new THREE.ConeGeometry(0.1, 4, 32);
+
+        const needleMaterial = new THREE.MeshStandardMaterial({
+          color: 'silver',
+          metalness: 0.6,
+          roughness: 0.2
+        });
+        const needleGeometry = new THREE.ConeGeometry(0.15, pinHeight, 16);
         const needle = new THREE.Mesh(needleGeometry, needleMaterial);
-        needle.rotation.x = Math.PI;
-        needle.position.y = -2;
+        needle.position.y = pinHeight / 2;
         group.add(needle);
-        group.rotation.x = Math.PI / 2;
+     
         return group;
       })
       .onPointClick(point => {
